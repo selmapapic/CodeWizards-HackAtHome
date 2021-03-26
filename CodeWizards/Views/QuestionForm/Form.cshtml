@@ -1,0 +1,256 @@
+﻿<html>
+<head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat";
+        }
+
+        section {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: aliceblue;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 90%;
+            padding: 20px;
+            box-shadow: 0px 0px 20px #00000020;
+            border-radius: 8px;
+            background-color: white;
+            height: 600px;
+        }
+
+        .step {
+            display: none;
+        }
+
+            .step.active {
+                display: block;
+            }
+
+        .form-group {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+            .form-group input {
+                width: 100%;
+                border: 1.5px solid rgba(128, 128, 128, 0.418);
+                padding: 5px;
+                font-size: 18px;
+                margin-top: 5px;
+                border-radius: 4px;
+            }
+
+        button.next-btn,
+        button.previous-btn,
+        button.submit-btn {
+            float: right;
+            margin-top: 20px;
+            padding: 10px 30px;
+            border: none;
+            outline: none;
+            background-color: rgb(180, 220, 255);
+            font-family: "Montserrat";
+            font-size: 18px;
+            cursor: pointer;
+            /* text-align: right; */
+        }
+
+        button.previous-btn {
+            float: left;
+        }
+
+        button.submit-btn {
+            background-color: aquamarine;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <form>
+
+                <div class="step step-1 active">
+                    <div>
+                        <label for="Age">Koliko imate godina?</label>
+                        <input type="number" id="Age" name="age">
+                    </div>
+                    <div>
+                        </br>
+                    </div>
+                    <div>
+                        <p>Spol:</p>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">M</label></br>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Ž</label>
+                    </div>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <div class="step step-2">
+                    <div>
+                        <p>Da li ste bili van granica BiH u posljednjih 15 dana?</p>
+                        <input type="radio" id="daPutovanje" name="putovanje" value="daPutovanje">
+                        <label>Da</label></br>
+                        <input type="radio" id="nePutovanje" name="putovanje" value="nePutovanje">
+                        <label>Ne</label>
+                    </div>
+                    <div>
+                        <p>Da li živite u mjestu sa mnogo COVID-19 oboljelih osoba?</p>
+                        <input type="radio" id="daMjesto" name="mjesto" value="daMjesto">
+                        <label>Da</label></br>
+                        <input type="radio" id="neMjesto" name="mjesto" value="neMjesto">
+                        <label>Ne</label>
+                    </div>
+                    <div>
+                        <p>Da li ste bili u kontaktu sa COVID-19 oboljelom osobom?</p>
+                        <input type="radio" id="daKontakt" name="kontakt" value="daKontakt">
+                        <label>Da</label></br>
+                        <input type="radio" id="neKontakt" name="kontakt" value="neKontakt">
+                        <label>Ne</label>
+                    </div>
+                    <button type="button" class="previous-btn">Prev</button>
+                    <button type="submit" class="next-btn">Next</button>
+                </div>
+
+                <div class="step step-2">
+                    <div>
+                        <p>Da li pravilno nosite masku?</p>
+                        <input type="radio" id="daMaska" name="maska" value="daMaska">
+                        <label>Da</label></br>
+                        <input type="radio" id="neMaska" name="maska" value="neMaska">
+                        <label>Ne</label>
+                    </div>
+                    <div>
+                        <p>Da li ste već prebolovali COVID-19?</p>
+                        <input type="radio" id="daBolovanje" name="bolovanje" value="daBolovanje">
+                        <label>Da</label></br>
+                        <input type="radio" id="neBolovanje" name="bolovanje" value="neBolovanje">
+                        <label>Ne</label>
+                    </div>
+                    <div>
+                        <p>Da li ste se vakcinisali?</p>
+                        <input type="radio" id="daVakcina" name="vakcina" value="daVakcina">
+                        <label>Da</label></br>
+                        <input type="radio" id="neVakcina" name="vakcina" value="neVakcina">
+                        <label>Ne</label>
+                    </div>
+                    <button type="button" class="previous-btn">Prev</button>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <div class="step step-2">
+                    <div>
+                        <p>Da li imate neke hronične bolesti/upale?</p>
+                        <p>(Dijabetes, astma, COPD, srčane bolesti...)</p>
+                        <input type="radio" id="daHronicne" name="hronicne" value="daHronicne">
+                        <label>Da</label></br>
+                        <input type="radio" id="neHronicne" name="hronicne" value="neHronicne">
+                        <label>Ne</label>
+                    </div>
+                    <div>
+                        <p>Primate li terapiju koja utječe na slabljenje vašeg imunog sistema?</p>
+                        <p>(Hemoterapija, kortikosteroidi...)</p>
+                        <input type="radio" id="daTerapija" name="terapija" value="daTerapija">
+                        <label>Da</label></br>
+                        <input type="radio" id="neTerapija" name="terapija" value="neTerapija">
+                        <label>Ne</label>
+                    </div>
+                    <div>
+                        <p>Pripadate li nekoj rizičnoj skupini?</p>
+                        <p>(Osobe starije od 50 god, trudnice...)</p>
+                        <input type="radio" id="daRizicno" name="rizicno" value="daRizicno">
+                        <label>Da</label></br>
+                        <input type="radio" id="neRizicno" name="rizicno" value="neRizicno">
+                        <label>Ne</label>
+                    </div>
+                    <button type="button" class="previous-btn">Prev</button>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <div class="step step-3">
+                    <div>
+                        <fieldset>
+                            <legend>Označite simptome koje imate:</legend>
+                            <input type="checkbox" name="simptomi" value="temp"> Temperatura<br>
+                            <input type="checkbox" name="simptomi" value="kasalj"> Suh kašalj<br>
+                            <input type="checkbox" name="simptomi" value="malaksalost"> Malaksalost<br>
+                            <input type="checkbox" name="simptomi" value="bolKostiMisici"> Bol u kostima i mišićima<br>
+                            <input type="checkbox" name="simptomi" value="culoMirisa"> Gubitak čula mirisa<br>
+                            <input type="checkbox" name="simptomi" value="culoOkusa"> Gubitak čula okusa<br>
+                            <input type="checkbox" name="simptomi" value="glavobolja"> Glavobolja<br>
+                            <input type="checkbox" name="simptomi" value="disanje"> Teško disanje<br>
+                            <input type="checkbox" name="simptomi" value="dah"> Kratak dah<br>
+                            <input type="checkbox" name="simptomi" value="diareja"> Diareja<br>
+                            <input type="checkbox" name="simptomi" value="bolPrsa"> Bol u prsima<br>
+                            <input type="checkbox" name="simptomi" value="kretanje"> Otežano kretanje<br>
+                            <input type="checkbox" name="simptomi" value="svijest"> Gubljenje svijesti<br>
+                            <input type="checkbox" name="simptomi" value="grlo"> Bol u grlu<br>
+                            <br>
+                            <input type="submit" value="Submit now" />
+                        </fieldset>
+                    </div>
+                    
+                    <button type="button" class="previous-btn">Prev</button>
+                    <button type="button" class="submit-btn">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <script>
+        const steps = Array.from(document.querySelectorAll("form .step"));
+        const nextBtn = document.querySelectorAll("form .next-btn");
+        const prevBtn = document.querySelectorAll("form .previous-btn");
+        const form = document.querySelector("form");
+
+        nextBtn.forEach((button) => {
+            button.addEventListener("click", () => {
+                changeStep("next");
+            });
+        });
+        prevBtn.forEach((button) => {
+            button.addEventListener("click", () => {
+                changeStep("prev");
+            });
+        });
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const inputs = [];
+            form.querySelectorAll("input").forEach((input) => {
+                const { name, value } = input;
+                inputs.push({ name, value });
+            });
+            console.log(inputs);
+            form.reset();
+        });
+
+        function changeStep(btn) {
+            let index = 0;
+            const active = document.querySelector(".active");
+            index = steps.indexOf(active);
+            steps[index].classList.remove("active");
+            if (btn === "next") {
+                index++;
+            } else if (btn === "prev") {
+                index--;
+            }
+            steps[index].classList.add("active");
+        }
+
+    </script>
+</body>
+</html>
