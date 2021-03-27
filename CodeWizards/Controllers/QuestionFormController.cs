@@ -33,7 +33,7 @@ namespace CodeWizards.Controllers
         {
             CovidStatisticsList covidStatistics = await GetStatisticsAsync();
 
-            return View();
+            return View(covidStatistics);
             
         }
 
