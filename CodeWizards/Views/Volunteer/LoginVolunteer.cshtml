@@ -1,5 +1,14 @@
 ﻿<html>
 <head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @{
+        if (TempData["ShowAlert"] != null)
+        {
+            <script>
+                swal("Uspješna registracija!", "Uspješno ste se registrovali kao volonter. Mailom će Vam biti poslan pristupni kod za Volonter hub.", "success");
+            </script>
+        }
+    }
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
 
     <style>

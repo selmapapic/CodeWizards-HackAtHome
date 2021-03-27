@@ -38,13 +38,13 @@ namespace CodeWizards.Controllers
         public IActionResult OrderDone(MedOrder medOrder)
         {
             MakeOrder(medOrder);
-            return View();
+            TempData["ShowAlert"] = "show";
+            return RedirectToAction("Order");
         }
 
-        private async void MakeOrder(MedOrder medOrder)
+        private void MakeOrder(MedOrder medOrder)
         {
-            List<Volunteer> volonteri = await _dbContext.Volunteers.ToListAsync();
-
+            List<Volunteer> volonteri = _dbContext.Volunteers.ToList();
             Patient patient = new Patient();
             patient.Name = medOrder.Name;
             patient.Telephone = medOrder.Telephone;

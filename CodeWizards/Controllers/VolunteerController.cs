@@ -135,6 +135,8 @@ namespace CodeWizards.Controllers
             smtp.EnableSsl = true;
             smtp.Send(mail);
 
+            TempData["ShowAlert"] = "show";
+
             return RedirectToAction("LoginVolunteer");
         }
 

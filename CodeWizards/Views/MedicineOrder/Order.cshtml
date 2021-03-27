@@ -1,5 +1,14 @@
 ﻿<html>
 <head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @{
+        if (TempData["ShowAlert"] != null)
+        {
+            <script>
+                swal("Narudžba uspješno izvršena!", "Vaša narudžba je uspješno dodana na spisak. Mailom ćete biti obaviješteni kada volonter preuzme narudžbu","success");
+            </script>
+        }
+    }
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
