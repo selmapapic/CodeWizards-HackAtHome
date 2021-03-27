@@ -41,7 +41,7 @@ namespace CodeWizards.Controllers
             foreach (Patient pacijent in pacijenti){
                 if(pacijent.Id == patientId)
                 {
-                    //pacijent.Served = true;
+                    pacijent.Served = true;
                     pacijent.Emergency = false;
                     _context.Patients.Update(pacijent);
                     await _context.SaveChangesAsync();
