@@ -1,6 +1,9 @@
-﻿<head>
+﻿@using System.Threading; 
+
+<head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         @@import url('https://fonts.googleapis.com/css?family=Raleway');
         /* Set the size of the div element that contains the map */
@@ -83,13 +86,12 @@
             display: none;
         }
 
-        .dioSlikaButton{
-            
+        .dioSlikaButton {
         }
 
-            .itemStil:last-of-type {
-                border-bottom: none;
-            }
+        .itemStil:last-of-type {
+            border-bottom: none;
+        }
     </style>
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -105,13 +107,15 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
                                  alt="..."
                                  class="img-fluid userSlika" />
-                            <button id="btnShowRoute" type="button" class="btn btn-secondary btn-md" onclick="showPatientRoute(document.getElementById('adresa').value)">
+                            
+                            <button id="btnShowRoute" type="button" class="btn btn-secondary btn-md" onclick="showPatientRoute(document.getElementById('@i').value)">
                                 <i class="fas fa-route fa-2x"></i>
                             </button>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h4 class="card-title">@ViewBag.Patients[i].Name</h4>
+                                <input type="hidden" id="@i" name="patient" value='@ViewBag.Patients[i].Location' />
                                 <p class="card-text" id="adresa">@ViewBag.Patients[i].Location</p>
                                 <ul class="listaLijekova">
                                     @for (int j = 0; j < ViewBag.Medicine.Count; j++)
@@ -147,7 +151,11 @@
     </div>
 
     <script>
-        var map;
+        var map, geocoder;
+        var lokacija = {
+            lat: 0,
+            long: 0
+        }
 
         function initMap() {
             geocoder = new google.maps.Geocoder();
@@ -158,56 +166,55 @@
         }
 
         function showPatientRoute(adresa) {
-            console.log(adresa);
-                //var positionOptions = {
-                //    enableHighAccuracy: true,
-                //    maximumAge: 500
-                //};
-                //if (navigator.geolocation) {
-                //    navigator.geolocation.getCurrentPosition(function (position) {
-                //        window.directionsService = new google.maps.DirectionsService();
-                //        window.directionsDisplay = new google.maps.DirectionsRenderer();
+            removeRoute();
+            
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        window.directionsService = new google.maps.DirectionsService();
+                        window.directionsDisplay = new google.maps.DirectionsRenderer();
 
-                //        var najbliziLat, najbliziLong, request;
+                        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                            params: {
+                                address: adresa,
+                                key: 'AIzaSyBd7K5-Z6imkbJEje_G9aPqEL65uUiOFfc'
+                            }
+                        })
+                            .then(function (response) {
+                                lokacija2 = {
+                                    lat: 0,
+                                    long: 0
+                                }
+                                lokacija2.lat = response.data.results[0].geometry.location.lat;
+                                lokacija2.long = response.data.results[0].geometry.location.lng;
 
-                //            najbliziLat = locations[0].lat;
-                //            najbliziLong = locations[0].long;
+                                lokacija = lokacija2;
+                                var request;
 
-                //            var minDistance = distanceBetween(position.coords.latitude, position.coords.longitude, najbliziLat, najbliziLong);
-                //            for (var i = 1; i < locations.length; i++) {
-                //                var nthMinDistance = distanceBetween(position.coords.latitude, position.coords.longitude, locations[i].lat, locations[i].long);
-                //                if (nthMinDistance < minDistance) {
-                //                    minDistance = nthMinDistance;
-                //                    najbliziLat = locations[i].lat;
-                //                    najbliziLong = locations[i].long;
+         
+                                console.log(lokacija);
+                                request = {
+                                    origin: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                                    destination: new google.maps.LatLng(lokacija.lat, lokacija.long),
+                                    travelMode: 'DRIVING'
+                                }
 
-                //                }
-                //            }
-
-                //                request = {
-                //                    origin: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-                //                    destination: new google.maps.LatLng(najbliziLat, najbliziLong),
-                //                    travelMode: 'DRIVING'
-                //                }
-                //                odredisniLat = najbliziLat;
-                //                odredisniLon = najbliziLong;
-
-                //        document.getElementById("lat").value = odredisniLat;
-                //        document.getElementById("lon").value = odredisniLon;
-
-                //        directionsDisplay.setMap(map);
-                //        directionsService.route(request, (result, status) => {
-                //            if (status == 'OK') {
-                //                directionsDisplay.setDirections(result);
-                //            }
-                //        });
-
-                //    });
-                //}
+                                directionsDisplay.setMap(map);
+                                directionsService.route(request, (result, status) => {
+                                    if (status == 'OK') {
+                                        directionsDisplay.setDirections(result);
+                                    }
+                                });
+                            })
+                        
+                    });
+                }
         }
 
         function removeRoute() {
-            window.directionsDisplay.setDirections({ routes: [] });
+            if (window.directionsDisplay != null) {
+                window.directionsDisplay.setDirections({ routes: [] });
+            }
+            
 
         }
 
