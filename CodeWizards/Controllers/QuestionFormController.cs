@@ -65,6 +65,8 @@ namespace CodeWizards.Controllers
                         listCovid.Add(covidStatistics[i]);
                     }
 
+                    listCovid.Reverse();
+
                     CovidStatisticsList covid = new CovidStatisticsList()
                     {
                         ListOfCovidStatistics = listCovid,
