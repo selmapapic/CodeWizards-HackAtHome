@@ -1,5 +1,14 @@
 ﻿<html>
 <head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @{
+        if (TempData["ShowAlert"] != null)
+        {
+            <script>
+                swal("Uspješna registracija!", "Uspješno ste se registrovali kao volonter. Mailom će Vam biti poslan pristupni kod za Volonter hub.", "success");
+            </script>
+        }
+    }
     <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
 
     <style>
@@ -250,6 +259,13 @@
             /* text-align: right; */
         }
 
+        #navigacija {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+        }
 
 
         .pozicijaDesni {
@@ -258,6 +274,9 @@
     </style>
 </head>
 <body>
+    <a asp-controller="Cards" asp-action="Cards">
+        <img id="navigacija" src="https://img.icons8.com/nolan/96/circled-chevron-left.png" />
+    </a>
     <div class="login-box pozicijaLijevi">
         <h2>Ulaz na Volonter hub</h2>
         <form asp-controller="Volunteer" asp-action="Login">

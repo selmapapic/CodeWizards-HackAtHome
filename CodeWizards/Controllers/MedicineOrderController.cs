@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace CodeWizards.Controllers
 {
@@ -37,11 +38,13 @@ namespace CodeWizards.Controllers
         public IActionResult OrderDone(MedOrder medOrder)
         {
             MakeOrder(medOrder);
-            return View();
+            TempData["ShowAlert"] = "show";
+            return RedirectToAction("Order");
         }
 
         private void MakeOrder(MedOrder medOrder)
         {
+            List<Volunteer> volonteri = _dbContext.Volunteers.ToList();
             Patient patient = new Patient();
             patient.Name = medOrder.Name;
             patient.Telephone = medOrder.Telephone;
@@ -51,6 +54,7 @@ namespace CodeWizards.Controllers
 
             _dbContext.Patients.Add(patient);
             _dbContext.SaveChanges();
+
 
             int Id = GetPatientId(patient);
 
@@ -66,7 +70,33 @@ namespace CodeWizards.Controllers
                 _dbContext.SaveChanges();
             }
 
+           
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("code.wizards2021@gmail.com");
 
+            foreach(Volunteer volonter in volonteri){
+                mail.To.Add(volonter.Email);
+            }
+           
+            mail.Subject = "Obavijest";
+            mail.Body = "Poštovani, <br />" + Environment.NewLine +
+                "        upravo je registrovana nova narudžba. Detalje možete provjeriti na Volonter hub-u. <br />" +
+                Environment.NewLine + "CodeWizards tim";
+            mail.IsBodyHtml = true;
+
+            ViewBag.From = mail.From;
+            ViewBag.To = mail.To;
+            ViewBag.Subject = mail.Subject;
+            ViewBag.Body = mail.Body;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.UseDefaultCredentials = false;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Credentials = new System.Net.NetworkCredential("code.wizards2021@gmail.com", "hakaton2021!");
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
         }
 
         private int GetPatientId(Patient p)
