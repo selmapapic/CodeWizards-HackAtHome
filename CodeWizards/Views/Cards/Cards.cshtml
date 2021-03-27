@@ -1,0 +1,127 @@
+﻿<html>
+<head>
+
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0F3643;
+        }
+
+        .container {
+            display: flex;
+            height: 60vh;
+            margin-top: 10%;
+        }
+
+        .section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            transition: flex .4s ease;
+            position: relative;
+        }
+
+            .section:first-of-type {
+                border-bottom-left-radius: 35px;
+                border-top-left-radius: 35px;
+            }
+
+            .section:last-of-type {
+                border-bottom-right-radius: 35px;
+                border-top-right-radius: 35px;
+            }
+
+            .section .overlay {
+                background-color: rgba(0, 0, 0, 0.7);
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transition: background-color .8s ease;
+            }
+
+            .section .content {
+                z-index: 2;
+            }
+
+            .section:hover {
+                flex: 2;
+            }
+
+                .section:hover .overlay {
+                    background-color: rgba(0, 0, 0, 0.95);
+                }
+
+        #strelica {
+            margin-top: 60px;
+        }
+
+        .poravnanje {
+            margin-left: 33px;
+            padding-right: 33px;
+        }
+
+        #pitanja {
+            background-image: url(https://www.noragouma.com/wp-content/uploads/2019/01/word-image-12-1050x700.jpeg);
+        }
+
+
+        #shop {
+            background-image: url(http://c0.thejournal.ie/media/2013/03/poll-drugs-nca-medication-752x501.jpg);
+        }
+
+        #volonter {
+            background-image: url(https://images.theconversation.com/files/195838/original/file-20171122-6020-a0zfau.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="pitanja" class="section">
+            <div class="content poravnanje">
+                <h1>COVID-19 forma</h1>
+            </div>
+            <div class="overlay">
+                <a asp-controller="QuestionForm" asp-action="Form" class="section" id="strelica">
+                    <img src="https://img.icons8.com/nolan/96/expand-arrow.png" />
+                </a>
+            </div>
+        </div>
+        <div id="shop" class="section">
+            <div class="content">
+                <h1>Narudžba lijekova</h1>
+                <p></p>
+            </div>
+            <div class="overlay">
+                <a asp-controller="" asp-action="" class="section" id="strelica">
+                    <img src="https://img.icons8.com/nolan/96/expand-arrow.png" />
+                </a>
+            </div>
+        </div>
+        <div id="volonter" class="section">
+            <div class="content">
+                <h1>Volonter hub</h1>
+            </div>
+            <div class="overlay">
+                <a asp-controller="Volunteer" asp-action="Volunteer" class="section" id="strelica">
+                    <img src="https://img.icons8.com/nolan/96/expand-arrow.png" />
+                </a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
