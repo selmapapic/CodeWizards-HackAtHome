@@ -34,7 +34,9 @@ namespace CodeWizards.Controllers
         // GET: /<controller>/
         public async Task<IActionResult> VolunteerAsync()
         {
-            ViewBag.Patients = await _context.Patients.ToListAsync();
+            List<Patient> pacijenti = await _context.Patients.ToListAsync();
+            
+            ViewBag.Patients = pacijenti.OrderByDescending(pacijent => pacijent.Emergency).ToList();
             ViewBag.Medicine = await _context.Medicines.ToListAsync();
             ViewBag.LinkList = await _context.PatientMedicineLinks.ToListAsync();
             return View();
@@ -88,6 +90,7 @@ namespace CodeWizards.Controllers
                 }
             }
 
+            TempData["ShowAlert"] = "show";
             return RedirectToAction("Volunteer");
         }
 
