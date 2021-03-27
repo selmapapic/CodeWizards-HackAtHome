@@ -14,8 +14,8 @@
         }
 
         #map {
-            height: 730px;
-            width: 75%;
+            height: 650px;
+            width: 65%;
             margin-top: 30px;
             margin-bottom: 30px;
             zoom: 1;
@@ -29,22 +29,22 @@
             height: 100px;
             border-radius: 20px;
             bottom: 7%;
-            margin-left: 54%;
+            margin-left: 60%;
         }
 
         #userKartica {
             float: left;
-            width: 25%;
-            margin-left: -10%;
+            width: 20%;
+            margin-left: 5%;
             margin-right: 6%;
             margin-top: 30px;
             margin-bottom: 30px;
             overflow-y: scroll;
-            height: 730px;
+            height: 650px;
         }
 
         .glavni {
-            width: 120%;
+            width: 100%;
             position: relative;
         }
 
@@ -61,7 +61,7 @@
         }
 
         #btnShowRoute {
-            margin-left: 25px;
+            margin-left: 20px;
             margin-top: 20px;
             margin-bottom: 20px;
             border-radius: 20px;
@@ -83,6 +83,10 @@
             display: none;
         }
 
+        .dioSlikaButton{
+            
+        }
+
             .itemStil:last-of-type {
                 border-bottom: none;
             }
@@ -101,13 +105,14 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
                                  alt="..."
                                  class="img-fluid userSlika" />
-                            <button id="btnShowRoute" type="button" class="btn btn-secondary btn-md">
+                            <button id="btnShowRoute" type="button" class="btn btn-secondary btn-md" onclick="showPatientRoute(document.getElementById('adresa').value)">
                                 <i class="fas fa-route fa-2x"></i>
                             </button>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h4 class="card-title">@ViewBag.Patients[i].Name</h4>
+                                <p class="card-text" id="adresa">@ViewBag.Patients[i].Location</p>
                                 <ul class="listaLijekova">
                                     @for (int j = 0; j < ViewBag.Medicine.Count; j++)
                                     {
@@ -141,7 +146,8 @@
         </button>
     </div>
 
-    <script>var map;
+    <script>
+        var map;
 
         function initMap() {
             geocoder = new google.maps.Geocoder();
@@ -149,7 +155,74 @@
             var sarajevo = { lat: 43.8563, lng: 18.4131 };
             // The map, centered at Sarajevo
             map = new google.maps.Map(document.getElementById('map'), { zoom: 14, center: sarajevo });
-        }</script>
+        }
+
+        function showPatientRoute(adresa) {
+            console.log(adresa);
+                //var positionOptions = {
+                //    enableHighAccuracy: true,
+                //    maximumAge: 500
+                //};
+                //if (navigator.geolocation) {
+                //    navigator.geolocation.getCurrentPosition(function (position) {
+                //        window.directionsService = new google.maps.DirectionsService();
+                //        window.directionsDisplay = new google.maps.DirectionsRenderer();
+
+                //        var najbliziLat, najbliziLong, request;
+
+                //            najbliziLat = locations[0].lat;
+                //            najbliziLong = locations[0].long;
+
+                //            var minDistance = distanceBetween(position.coords.latitude, position.coords.longitude, najbliziLat, najbliziLong);
+                //            for (var i = 1; i < locations.length; i++) {
+                //                var nthMinDistance = distanceBetween(position.coords.latitude, position.coords.longitude, locations[i].lat, locations[i].long);
+                //                if (nthMinDistance < minDistance) {
+                //                    minDistance = nthMinDistance;
+                //                    najbliziLat = locations[i].lat;
+                //                    najbliziLong = locations[i].long;
+
+                //                }
+                //            }
+
+                //                request = {
+                //                    origin: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                //                    destination: new google.maps.LatLng(najbliziLat, najbliziLong),
+                //                    travelMode: 'DRIVING'
+                //                }
+                //                odredisniLat = najbliziLat;
+                //                odredisniLon = najbliziLong;
+
+                //        document.getElementById("lat").value = odredisniLat;
+                //        document.getElementById("lon").value = odredisniLon;
+
+                //        directionsDisplay.setMap(map);
+                //        directionsService.route(request, (result, status) => {
+                //            if (status == 'OK') {
+                //                directionsDisplay.setDirections(result);
+                //            }
+                //        });
+
+                //    });
+                //}
+        }
+
+        function removeRoute() {
+            window.directionsDisplay.setDirections({ routes: [] });
+
+        }
+
+        function distanceBetween(lat1, lon1, lat2, lon2) {
+            const R = 6371e3;
+            const fi1 = lat1 * Math.PI / 180;
+            const fi2 = lat2 * Math.PI / 180;
+            const deltaFi = (lat2 - lat1) * Math.PI / 180;
+            const deltaLambda = (lon2 - lon1) * Math.PI / 180;
+            const x = deltaLambda * Math.cos((fi1 + fi2) / 2);
+            const y = deltaFi;
+            return Math.sqrt(x * x + y * y) * R;
+        }
+
+    </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <script async defer
