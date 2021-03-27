@@ -1,7 +1,7 @@
 # Covid Helper
 ## CodeWizards
 
-[![github](https://imgur.com/4L5RcSx)]
+![alt text](https://i.imgur.com/MP8Myj5.png)
 
 ## Overview
 Covid Helper solves the problem of people in lockdown, who are not being able to get needed medicine in time. The application allows users to complete online Covid-19 test and get the probability of being infected using Machine Learning. We provide a wide network of volunteers, who are able to check the patient's locations, see the fastest route and deliver requested medication in just one day. Everyone can register as a volunteer and access Volunteer hub using their own access code.
@@ -19,4 +19,4 @@ Covid Helper solves the problem of people in lockdown, who are not being able to
 * HTML/CSS
 * Google Maps JavaScript API
 * Google Maps Geocoding API
-* Azure Machine Learning tool
+* Azure Machine Learning Tool
