@@ -1,5 +1,6 @@
 ﻿<html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200&display=swap');
 
@@ -16,185 +17,274 @@
 
 
 
-      @@import url('https://fonts.googleapis.com/css?family=Abel');
+        @@import url('https://fonts.googleapis.com/css?family=Abel');
+
+        .progress {
+            height: 10px;
+            background: #e9e9ea;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            overflow: visible;
+            position: relative;
+            width: 150%;
+            margin-top: 30px;
+        }
+
+            .progress:before,
+            .progress:after {
+                content: "";
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #fff;
+                position: absolute;
+                top: -5px;
+                left: 0;
+                z-index: 1;
+            }
+
+            .progress:after {
+                border: 7px solid #e9e9ea;
+                left: auto;
+                right: 0;
+            }
+
+            .progress .progress-bar {
+                box-shadow: none;
+                border: none;
+                border-radius: 15px;
+                position: relative;
+                -webkit-animation: animate-positive 1s;
+                animation: animate-positive 1s;
+            }
+
+            .progress .progress-value {
+                width: 70px;
+                height: 35px;
+                line-height: 27px;
+                border-radius: 20px;
+                background: #fff;
+                font-size: 17px;
+                font-weight: 600;
+                position: absolute;
+                top: -12px;
+                right: 0;
+                z-index: 2;
+            }
+
+            .progress.orange:before {
+                border: 7px solid #808080;
+            }
+
+            .progress.orange .progress-value {
+                border: 5px solid #808080;
+                color: #686868;
+            }
+
+        @@-webkit-keyframes animate-positive {
+            0% {
+                width: 0;
+            }
+        }
+
+        @@keyframes animate-positive {
+            0% {
+                width: 0;
+            }
+        }
 
 
 
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-}
-
-.card {
-  width: 450px;
-  height: 250px;
-  background-color: #fff;
-  background: linear-gradient(#f8f8f8, #fff);
-  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
-  border-radius: 6px;
-  overflow: hidden;
-  position: relative;
-  margin: 1.5rem;
-}
-
-.card h1 {
-  text-align: center;
-}
-
-.card .additional {
-  position: absolute;
-  width: 150px;
-  height: 100%;
-  background: linear-gradient(#dE685E, #EE786E);
-  transition: width 0.4s;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.card.green .additional {
-  background: linear-gradient(#92bCa6, #A2CCB6);
-}
 
 
-.card:hover .additional {
-  width: 100%;
-  border-radius: 0 5px 5px 0;
-}
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+        }
 
-.card .additional .user-card {
-  width: 150px;
-  height: 100%;
-  position: relative;
-  float: left;
-}
+        .card {
+            width: 450px;
+            height: 250px;
+            background-color: #fff;
+            background: linear-gradient(#f8f8f8, #fff);
+            box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+            overflow: hidden;
+            position: relative;
+            margin: 1.5rem;
+        }
 
-.card .additional .user-card::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 10%;
-  right: -2px;
-  height: 80%;
-  border-left: 2px solid rgba(0,0,0,0.025);*/
-}
+            .card h1 {
+                text-align: center;
+            }
 
-.card .additional .user-card .level,
-.card .additional .user-card .points {
-  top: 15%;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  font-weight: bold;
-  background: rgba(0,0,0,0.15);
-  padding: 0.125rem 0.75rem;
-  border-radius: 100px;
-  white-space: nowrap;
-}
+            .card .additional {
+                position: absolute;
+                width: 150px;
+                height: 100%;
+                background: linear-gradient(#dE685E, #EE786E);
+                transition: width 0.4s;
+                overflow: hidden;
+                z-index: 2;
+            }
 
-.card .additional .user-card .points {
-  top: 85%;
-}
+            .card.green .additional {
+                background: linear-gradient(#d0d0d0, #F0F0F0);
+            }
 
-.card .additional .user-card svg {
-  top: 50%;
-}
 
-.card .additional .more-info {
-  width: 300px;
-  float: left;
-  position: absolute;
-  left: 150px;
-  height: 100%;
-}
+            .card:hover .additional {
+                width: 100%;
+                border-radius: 0 5px 5px 0;
+            }
 
-.card .additional .more-info h1 {
-  color: #fff;
-  margin-bottom: 0;
-}
+            .card .additional .user-card {
+                width: 150px;
+                height: 100%;
+                position: relative;
+                float: left;
+            }
 
-.card.green .additional .more-info h1 {
-  color: #224C36;
-}
+                .card .additional .user-card::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 10%;
+                    right: -2px;
+                    height: 80%;
+                    border-left: 2px solid rgba(0,0,0,0.025);
+                    */
+                }
 
-.card .additional .coords {
-  margin: 0 1rem;
-  color: #fff;
-  font-size: 1rem;
-}
+                .card .additional .user-card .level,
+                .card .additional .user-card .points {
+                    top: 15%;
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-size: 0.75em;
+                    font-weight: bold;
+                    background: rgba(0,0,0,0.15);
+                    padding: 0.125rem 0.75rem;
+                    border-radius: 100px;
+                    white-space: nowrap;
+                }
 
-.card.green .additional .coords {
-  color: #325C46;
-}
+                .card .additional .user-card .points {
+                    top: 85%;
+                }
 
-.card .additional .coords span + span {
-  float: right;
-}
+                .card .additional .user-card svg {
+                    top: 50%;
+                }
 
-.card .additional .stats {
-  font-size: 2rem;
-  display: flex;
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
-  top: auto;
-  color: #fff;
-}
+            .card .additional .more-info {
+                width: 300px;
+                float: left;
+                position: absolute;
+                left: 150px;
+                height: 100%;
+            }
 
-.card.green .additional .stats {
-  color: #325C46;
-}
+                .card .additional .more-info h1 {
+                    color: #fff;
+                    margin-bottom: 0;
+                }
 
-.card .additional .stats > div {
-  flex: 1;
-  text-align: center;
-}
+            .card.green .additional .more-info h1 {
+                color: #303030;
+            }
 
-.card .additional .stats i {
-  display: block;
-}
+            .card .additional .coords {
+                margin: 0 1rem;
+                color: #303030;
+                font-size: 1rem;
+            }
 
-.card .additional .stats div.title {
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
+            .card.green .additional .coords {
+            }
 
-.card .additional .stats div.value {
-  font-size: 1.5rem;
-  font-weight: bold;
-  line-height: 1.5rem;
-}
+            .card .additional .coords span + span {
+                float: right;
+            }
 
-.card .additional .stats div.value.infinity {
-  font-size: 2.5rem;
-}
+            .card .additional .stats {
+                font-size: 2rem;
+                display: flex;
+                position: absolute;
+                bottom: 1rem;
+                left: 1rem;
+                right: 1rem;
+                top: auto;
+                color: #fff;
+            }
 
-.card .general {
-  width: 300px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  box-sizing: border-box;
-  padding: 1rem;
-  padding-top: 0;
-}
+            .card.green .additional .stats {
+                color: #325C46;
+            }
 
-.card .general .more {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  font-size: 0.9em;
-}
+            .card .additional .stats > div {
+                flex: 1;
+                text-align: center;
+            }
+
+            .card .additional .stats i {
+                display: block;
+            }
+
+            .card .additional .stats div.title {
+                font-size: 0.75rem;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            .card .additional .stats div.value {
+                font-size: 1.5rem;
+                font-weight: bold;
+                line-height: 1.5rem;
+            }
+
+                .card .additional .stats div.value.infinity {
+                    font-size: 2.5rem;
+                }
+
+            .card .general {
+                width: 300px;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 1;
+                box-sizing: border-box;
+                padding: 1rem;
+                padding-top: 0;
+            }
+
+                .card .general .more {
+                    position: absolute;
+                    bottom: 1rem;
+                    right: 1rem;
+                    font-size: 0.9em;
+                }
+
+        .cardleft {
+            width: 450px;
+            height: 500px;
+            background-color: #fff;
+            background: linear-gradient(#f8f8f8, #fff);
+            box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+            overflow: hidden;
+            position: relative;
+            margin: 1.5rem;
+            border-radius: 5px;
+            padding: 20px 20px 20px 20px;
+        }
 
 
         img {
-           height: 100%;
-           width: 100%;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
         }
 
         table {
@@ -207,66 +297,26 @@
             width: 50%;
             margin-left: 50px;
         }
+
+        button.webShop {
+            margin-top: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: none;
+            outline: none;
+            background-color: #FFD747;
+            font-family: "Poppins";
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            width: 130px;
+            padding-left: 0px;
+            padding-right: 0px;
+            /* text-align: right; */
+        }
     </style>
 </head>
 <body>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-        google.charts.load('current', { packages: ['corechart', 'line'] });
-        google.charts.setOnLoadCallback(drawBackgroundColor);
-
-        function drawBackgroundColor() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'X');
-            data.addColumn('number', 'Zarazeni');
-            data.addColumn('number', 'Oporavljeni');
-
-            data.addRows([
-                [0, 0, 0], [1, 10, 5], [2, 23, 15], [3, 17, 9], [4, 18, 10], [5, 9, 5],
-                [6, 11, 3], [7, 27, 19], [8, 33, 25], [9, 40, 32], [10, 32, 24], [11, 35, 27],
-                [12, 30, 22], [13, 40, 32], [14, 42, 34]
-            ]);
-            var options = {
-                width: 500,
-                height: 300,
-                hAxis: {
-                    title: 'Time',
-                    textStyle: {
-                        color: '#01579b',
-                        fontSize: 16,
-                        fontName: 'Poppins',
-                        bold: true
-                    },
-                    titleTextStyle: {
-                        color: '#01579b',
-                        fontSize: 16,
-                        fontName: 'Arial',
-                        bold: false
-                    }
-                },
-                vAxis: {
-                    title: 'Popularity',
-                    textStyle: {
-                        color: '#1a237e',
-                        fontSize: 16,
-                        bold: true
-                    },
-                    titleTextStyle: {
-                        color: '#1a237e',
-                        fontSize: 16,
-                        bold: true
-                    }
-                },
-                colors: ['#a52714', '#097138']
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-    </script>
-
-
     <div class="center">
         <table>
             <tr>
@@ -302,14 +352,14 @@
                                 <tr>
                                     <td>
                                         <div>Broj slučajeva danas:</div>
-                                        <div style="font-size: 30pt">28</div>
+                                        <div style="font-size: 30pt">@Model.CovidToday.todayCases</div>
                                     </td>
 
                                 </tr>
                                 <tr>
                                     <td>
                                         <div>Ukupan broj slučajeva:</div>
-                                        <div style="font-size: 30pt">132000</div>
+                                        <div style="font-size: 30pt">@Model.CovidGeneral.ListOfCovidStatistics[0].Confirmed</div>
                                     </td>
                                 </tr>
                             </table>
@@ -317,13 +367,58 @@
                     </div>
 
                 </td>
-            </tr>
-            <tr><td>
-    <div id="chart_div"></div>
-</td>
-                
+                <td>
+                    <div class="cardleft">
+                        <h1>Vjerovatnoća da ste zaraženi je:</h1>
 
+                        <div class="container">
+                            <div>
+                                <div class="col-md-6">
+                                    <div class="progress orange">
+                                        <div class="progress-bar" style="        width: 100%; background: #808080;">
+                                            <div class="progress-value">100%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @{ if (30 == 30)
+                            {
+                                <br />
+                                <p>Po našim procjenama mala je vjerovatnoća da ste trenutno zaraženi virusom COVID-19.</p>
+                                <div>Svakako, preporučujemo da se što manje krećete kako ne bi bili izloženi opasnosti zaraze.</div>
+                                <br />
+                                <div>Ukoliko Vam se pojave bilo koji od simptoma iz prethodnog upitnika, molimo da obavezno kontaktirate svog porodičnog ljekara.</div>
+                            }
+                            else if (30 == 31)
+                            {
+                                <p><b>Preporučujemo</b> Vam da kontaktirate porodičnog ljekara i provjerite ozbiljnost simptoma. </p>
+                                <div>Naručite neke od lijekova koje Vam nudimo klikom na sljedeće dugme: </div>
+                                <button type="submit" class="webShop"><i class="fa fa-cart-plus"></i> &nbsp; Narudžba</button>
+                                <br />
+                                <br />
+                                <div>Naši volonteri su tu za Vas.</div>
+                                <div>Na taj način smanjujete mogućnost prenosa virusa na druge.</div>
+                            }
+                            else
+                            {
+                                <p><b>Obavezno</b> kontaktirajte ljekara i zakažite testiranje na COVID-19.</p>
+
+                                <div>Naručite neke od lijekova koje Vam nudimo klikom na sljedeće dugme: </div>
+                                <button type="submit" class="webShop"><i class="fa fa-cart-plus"></i> &nbsp; Narudžba</button>
+                                <br />
+                                <br />
+                                <div>Naši volonteri su tu za Vas.</div>
+                                <div>Na taj način smanjujete mogućnost prenosa virusa na druge.</div>
+                            }
+                        }
+                    </div>
+                </td>
             </tr>
+           
+    <!-- <div id="chart_div"></div>-->
+
         </table>
        
     </div>
