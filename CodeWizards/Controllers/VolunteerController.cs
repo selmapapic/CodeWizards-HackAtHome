@@ -61,14 +61,14 @@ namespace CodeWizards.Controllers
 
                     mail.Subject = "Status isporuke";
                     mail.Body = "Poštovani, <br /> " + Environment.NewLine +
-                        "     <br />   želimo da Vas obavijestimo da je Vašu narudžbu primio naš volonter Milica. <br />" +
+                        "     <br />   želimo da Vas obavijestimo da je Vašu narudžbu primio naš volonter. <br />" +
                         Environment.NewLine +
-                        "       Možete stupiti u kontakt sa njim putem emaila: mdokic1@etf.unsa.ba ili na broj telefona: +387 62 531 942. Narudžba će biti " +
+                        "       Za sva pitanja možete nam se javiti putem emaila: code.wizards2021@gmail.com ili na broj telefona: +387 62 531 942. Narudžba će biti " +
                         "isporučena do kraja dana. <br />" + Environment.NewLine +
                         "        " + Environment.NewLine +
                         "      <br />  Srdačan pozdrav, <br /> " + Environment.NewLine
                               + " <br /> CodeWizards tim";
-                    //mail.Body = mail.Body.Replace("@", System.Environment.NewLine);
+
                     mail.IsBodyHtml = true;
 
                     ViewBag.From = mail.From;
@@ -76,8 +76,6 @@ namespace CodeWizards.Controllers
                     ViewBag.Subject = mail.Subject;
                     ViewBag.Body = mail.Body;
 
-                    //TempData["mail"] = Newtonsoft.Json.JsonConvert.SerializeObject(mail);
-                    //MailMessage email = Newtonsoft.Json.JsonConvert.DeserializeObject<MailMessage>((string)TempData["mail"]);
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
