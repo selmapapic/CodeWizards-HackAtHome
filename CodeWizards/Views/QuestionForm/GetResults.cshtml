@@ -383,7 +383,7 @@
                             </div>
                         </div>
 
-                        @{ if (30 == 30)
+                        @{ if (30 == 31)
                             {
                                 <br />
                                 <p>Po našim procjenama mala je vjerovatnoća da ste trenutno zaraženi virusom COVID-19.</p>
@@ -391,11 +391,13 @@
                                 <br />
                                 <div>Ukoliko Vam se pojave bilo koji od simptoma iz prethodnog upitnika, molimo da obavezno kontaktirate svog porodičnog ljekara.</div>
                             }
-                            else if (30 == 31)
+                            else if (30 == 30)
                             {
                                 <p><b>Preporučujemo</b> Vam da kontaktirate porodičnog ljekara i provjerite ozbiljnost simptoma. </p>
                                 <div>Naručite neke od lijekova koje Vam nudimo klikom na sljedeće dugme: </div>
-                                <button type="submit" class="webShop"><i class="fa fa-cart-plus"></i> &nbsp; Narudžba</button>
+                                <a asp-controller="MedicineOrder" asp-action="Order">
+                                    <button type="submit" class="webShop"><i class="fa fa-cart-plus"></i> &nbsp; Narudžba</button>
+                                </a>
                                 <br />
                                 <br />
                                 <div>Naši volonteri su tu za Vas.</div>
@@ -406,7 +408,9 @@
                                 <p><b>Obavezno</b> kontaktirajte ljekara i zakažite testiranje na COVID-19.</p>
 
                                 <div>Naručite neke od lijekova koje Vam nudimo klikom na sljedeće dugme: </div>
-                                <button type="submit" class="webShop"><i class="fa fa-cart-plus"></i> &nbsp; Narudžba</button>
+                                <a asp-controller="MedicineOrder" asp-action="Order">
+                                    <button type="submit" class="webShop"><i class="fa fa-cart-plus"></i> &nbsp; Narudžba</button>
+                                </a>
                                 <br />
                                 <br />
                                 <div>Naši volonteri su tu za Vas.</div>
