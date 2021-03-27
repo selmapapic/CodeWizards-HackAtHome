@@ -1,0 +1,331 @@
+﻿<html>
+<head>
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins';
+            background-color: #0F3643;
+        }
+
+
+
+      @@import url('https://fonts.googleapis.com/css?family=Abel');
+
+
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.card {
+  width: 450px;
+  height: 250px;
+  background-color: #fff;
+  background: linear-gradient(#f8f8f8, #fff);
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  margin: 1.5rem;
+}
+
+.card h1 {
+  text-align: center;
+}
+
+.card .additional {
+  position: absolute;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(#dE685E, #EE786E);
+  transition: width 0.4s;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card.green .additional {
+  background: linear-gradient(#92bCa6, #A2CCB6);
+}
+
+
+.card:hover .additional {
+  width: 100%;
+  border-radius: 0 5px 5px 0;
+}
+
+.card .additional .user-card {
+  width: 150px;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+
+.card .additional .user-card::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10%;
+  right: -2px;
+  height: 80%;
+  border-left: 2px solid rgba(0,0,0,0.025);*/
+}
+
+.card .additional .user-card .level,
+.card .additional .user-card .points {
+  top: 15%;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: rgba(0,0,0,0.15);
+  padding: 0.125rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.card .additional .user-card .points {
+  top: 85%;
+}
+
+.card .additional .user-card svg {
+  top: 50%;
+}
+
+.card .additional .more-info {
+  width: 300px;
+  float: left;
+  position: absolute;
+  left: 150px;
+  height: 100%;
+}
+
+.card .additional .more-info h1 {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.card.green .additional .more-info h1 {
+  color: #224C36;
+}
+
+.card .additional .coords {
+  margin: 0 1rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.card.green .additional .coords {
+  color: #325C46;
+}
+
+.card .additional .coords span + span {
+  float: right;
+}
+
+.card .additional .stats {
+  font-size: 2rem;
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  top: auto;
+  color: #fff;
+}
+
+.card.green .additional .stats {
+  color: #325C46;
+}
+
+.card .additional .stats > div {
+  flex: 1;
+  text-align: center;
+}
+
+.card .additional .stats i {
+  display: block;
+}
+
+.card .additional .stats div.title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.card .additional .stats div.value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+.card .additional .stats div.value.infinity {
+  font-size: 2.5rem;
+}
+
+.card .general {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.card .general .more {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.9em;
+}
+
+
+        img {
+           height: 100%;
+           width: 100%;
+        }
+
+        table {
+            width: 100%;
+            margin-left: 10px;
+            margin-top: 1%;
+        }
+
+        td {
+            width: 50%;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { packages: ['corechart', 'line'] });
+        google.charts.setOnLoadCallback(drawBackgroundColor);
+
+        function drawBackgroundColor() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'Zarazeni');
+            data.addColumn('number', 'Oporavljeni');
+
+            data.addRows([
+                [0, 0, 0], [1, 10, 5], [2, 23, 15], [3, 17, 9], [4, 18, 10], [5, 9, 5],
+                [6, 11, 3], [7, 27, 19], [8, 33, 25], [9, 40, 32], [10, 32, 24], [11, 35, 27],
+                [12, 30, 22], [13, 40, 32], [14, 42, 34]
+            ]);
+            var options = {
+                width: 500,
+                height: 300,
+                hAxis: {
+                    title: 'Time',
+                    textStyle: {
+                        color: '#01579b',
+                        fontSize: 16,
+                        fontName: 'Poppins',
+                        bold: true
+                    },
+                    titleTextStyle: {
+                        color: '#01579b',
+                        fontSize: 16,
+                        fontName: 'Arial',
+                        bold: false
+                    }
+                },
+                vAxis: {
+                    title: 'Popularity',
+                    textStyle: {
+                        color: '#1a237e',
+                        fontSize: 16,
+                        bold: true
+                    },
+                    titleTextStyle: {
+                        color: '#1a237e',
+                        fontSize: 16,
+                        bold: true
+                    }
+                },
+                colors: ['#a52714', '#097138']
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+
+
+    <div class="center">
+        <table>
+            <tr>
+                <td>
+                    <div class="card green">
+                        <div class="additional">
+                            <div class="user-card">
+                                <!--
+                <div class="level center">
+                    Level 13
+                </div>
+                    -->
+                                <img src="https://intermountainhealthcare.org/-/media/images/covid/coronavirus-covid-19.jpg?mw=1600" />
+                                <!--
+                <div class="points center">
+                    5,312 Points
+                </div>
+                -->
+                            </div>
+                            <div class="more-info">
+                                <h1>COVID-19</h1>
+                                <div class="coords">
+                                    </br>
+                                    <div>Čuvajte <b>sebe</b> i svoje <b>zdravlje</b>!</div>
+                                    </br>
+                                    <div>Budite odgovorni, ostanite kod kuće i na taj način pomozite u smanjenju ovih brojki.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="general">
+                            <h1>COVID-19</h1>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div>Broj slučajeva danas:</div>
+                                        <div style="font-size: 30pt">28</div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>Ukupan broj slučajeva:</div>
+                                        <div style="font-size: 30pt">132000</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            <tr><td>
+    <div id="chart_div"></div>
+</td>
+                
+
+            </tr>
+        </table>
+       
+    </div>
+</body>
+</html>
