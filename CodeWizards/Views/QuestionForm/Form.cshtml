@@ -111,7 +111,7 @@
 <body>
 
         <div class="container">
-            <form asp-controller="QuestionForm" asp-action="GetResults" method="get">
+            <form asp-controller="QuestionForm" asp-action="GetResults" method="post">
 
                 <div class="step step-1 active">
                     <div >
@@ -134,9 +134,9 @@
                     </div>
                     <div class="question">
                         <p>Spol:</p>
-                        <input type="radio" id="male" name="Spol" value="m">
+                        <input type="radio" id="male" name="Spol" value="M">
                         <label for="male">M</label></br>
-                        <input type="radio" id="female" name="Spol" value="f">
+                        <input type="radio" id="female" name="Spol" value="F">
                         <label for="female">Ž</label>
                     </div>
                     <button type="button" class="next-btn">Dalje</button>
@@ -148,9 +148,9 @@
                     </div>
                     <div class="question">
                         <p>Da li ste bili van granica BiH u posljednjih 15 dana?</p>
-                        <input type="radio" id="daPutovanje" name="Putovanje" value="da">
+                        <input type="radio" id="daPutovanje" name="Putovanje" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="nePutovanje" name="Putovanje" value="ne">
+                        <input type="radio" id="nePutovanje" name="Putovanje" value="0">
                         <label>Ne</label>
                     </div>
                     <div>
@@ -158,9 +158,9 @@
                     </div>
                     <div class="question">
                         <p>Da li živite u mjestu sa mnogo COVID-19 oboljelih osoba?</p>
-                        <input type="radio" id="daMjesto" name="Mjesto" value="da">
+                        <input type="radio" id="daMjesto" name="Mjesto" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neMjesto" name="Mjesto" value="ne">
+                        <input type="radio" id="neMjesto" name="Mjesto" value="0">
                         <label>Ne</label>
                     </div>
                     <div>
@@ -168,9 +168,9 @@
                     </div>
                     <div class="question">
                         <p>Da li ste bili u kontaktu sa COVID-19 oboljelom osobom?</p>
-                        <input type="radio" id="daKontakt" name="Kontakt" value="da">
+                        <input type="radio" id="daKontakt" name="Kontakt" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neKontakt" name="Kontakt" value="ne">
+                        <input type="radio" id="neKontakt" name="Kontakt" value="0">
                         <label>Ne</label>
                     </div>
                     <button type="button" class="previous-btn">Nazad</button>
@@ -183,9 +183,9 @@
                     </div>
                     <div class="question">
                         <p>Da li pravilno nosite masku?</p>
-                        <input type="radio" id="daMaska" name="Maska" value="da">
+                        <input type="radio" id="daMaska" name="Maska" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neMaska" name="Maska" value="ne">
+                        <input type="radio" id="neMaska" name="Maska" value="0">
                         <label>Ne</label>
                     </div>
                     <div>
@@ -193,9 +193,9 @@
                     </div>
                     <div class="question">
                         <p>Da li ste već prebolovali COVID-19?</p>
-                        <input type="radio" id="daBolovanje" name="Bolovanje" value="da">
+                        <input type="radio" id="daBolovanje" name="Bolovanje" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neBolovanje" name="Bolovanje" value="ne">
+                        <input type="radio" id="neBolovanje" name="Bolovanje" value="0">
                         <label>Ne</label>
                     </div>
                     <div>
@@ -203,9 +203,9 @@
                     </div>
                     <div class="question">
                         <p>Da li ste se vakcinisali?</p>
-                        <input type="radio" id="daVakcina" name="Vakcina" value="da">
+                        <input type="radio" id="daVakcina" name="Vakcina" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neVakcina" name="Vakcina" value="ne">
+                        <input type="radio" id="neVakcina" name="Vakcina" value="0">
                         <label>Ne</label>
                     </div>
                     <button type="button" class="previous-btn">Nazad</button>
@@ -219,9 +219,9 @@
                     <div class="question">
                         <p>Da li imate neke hronične bolesti/upale?</p>
                         <p>(Dijabetes, astma, COPD, srčane bolesti...)</p>
-                        <input type="radio" id="daHronicne" name="Hronicne" value="da">
+                        <input type="radio" id="daHronicne" name="Hronicne" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neHronicne" name="Hronicne" value="ne">
+                        <input type="radio" id="neHronicne" name="Hronicne" value="0">
                         <label>Ne</label>
                     </div>
                     <div>
@@ -230,9 +230,9 @@
                     <div class="question">
                         <p>Primate li terapiju koja utječe na slabljenje vašeg imunog sistema?</p>
                         <p>(Hemoterapija, kortikosteroidi...)</p>
-                        <input type="radio" id="daTerapija" name="Terapija" value="da">
+                        <input type="radio" id="daTerapija" name="Terapija" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neTerapija" name="Terapija" value="ne">
+                        <input type="radio" id="neTerapija" name="Terapija" value="0">
                         <label>Ne</label>
                     </div>
                     <div>
@@ -241,9 +241,9 @@
                     <div class="question">
                         <p>Pripadate li nekoj rizičnoj skupini?</p>
                         <p>(Osobe starije od 50 god, trudnice...)</p>
-                        <input type="radio" id="daRizicno" name="Rizicno" value="da">
+                        <input type="radio" id="daRizicno" name="Rizicno" value="1">
                         <label>Da</label></br>
-                        <input type="radio" id="neRizicno" name="Rizicno" value="ne">
+                        <input type="radio" id="neRizicno" name="Rizicno" value="0">
                         <label>Ne</label>
                     </div>
                     <button type="button" class="previous-btn">Nazad</button>

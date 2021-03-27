@@ -6,7 +6,6 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CodeWizards.Data;
 using CodeWizards.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -40,25 +39,26 @@ namespace CodeWizards.Controllers
         {
             CovidStatisticsList covidStatistics = await GetStatisticsAsync();
             TodayCases todayCases = await GetTodaysCasesAsync();
+            StatisticsResult stats = await CovidTestAsync(req);
 
             TodayAndGeneralStatistics todayAndGeneralStatistics = new TodayAndGeneralStatistics
             {
                 CovidGeneral = covidStatistics,
-                CovidToday = todayCases
+                CovidToday = todayCases,
+                statisticsRes = stats
             };
 
             return View(todayAndGeneralStatistics);
             
         }
 
-        public async Task CovidTestAsync(QuestionFormInfoReq req)
+        public async Task<StatisticsResult> CovidTestAsync(QuestionFormInfoReq req)
         {
             int[] simptomi = new int[14];
             for(int i=0; i<req.Simptomi.Length; i++)
             {
-                simptomi[req.Simptomi[i]] = 1;
+                simptomi[req.Simptomi[i] - 1] = 1;
             }
-            
 
             using (var client = new HttpClient())
             {
@@ -69,36 +69,13 @@ namespace CodeWizards.Controllers
                         {
                             "input1",
                             new StringTable()
-                            { 
-                                ColumnNames = new string[] {"Age", 
-                                                           "Gender",
-                                                           "Travel in previous 15 days",
-                                                           "Live in COVID affected area",
-                                                            "Contact with COVID positive person",
-                                                            "Wearing mask properly",
-                                                            "Already had COVID",
-                                                            "Is vaccinated",
-                                                            "Chronical illnesses",
-                                                            "Immune system weakening therapy",
-                                                            "Risk group",
-                                                            "Temperature",
-                                                            "Dry cough",
-                                                            "Weakness",
-                                                            "Muscle and bone pain",
-                                                            "Loss of taste",
-                                                            "Loss of smell",
-                                                            "Headache",
-                                                            "Difficulty breathing",
-                                                            "Short breath",
-                                                            "Diarrhea",
-                                                            "Chest pain",
-                                                            "Difficulty while moving",
-                                                            "Loss of consciousness",
-                                                            "Throat ache" },
-                                Values = new string[,] {  { 
+                            {
+                                ColumnNames = new string[] {"Age", "Gender", "Travel in previous 15 days", "Live in COVID affected area", "Contact with COVID positive person", "Wearing mask properly", "Already had COVID", "Is vaccinated", "Chronical illnesses", "Immune system weakening therapy", "Risk group", "Temperature", "Dry cough", "Weakness", "Muscle and bone pain", "Loss of taste", "Loss of smell", "Headache", "Difficulty breathing", "Short breath", "Diarrhea", "Chest pain", "Difficulty while moving", "Loss of consciousness", "Throat ache"},
+                                Values = new string[,] {  {
                                         req.Godine.ToString(),
                                         req.Spol.ToString(),
                                         req.Putovanje.ToString(),
+                                        req.Mjesto.ToString(),
                                         req.Kontakt.ToString(),
                                         req.Maska.ToString(),
                                         req.Bolovanje.ToString(),
@@ -120,7 +97,7 @@ namespace CodeWizards.Controllers
                                         simptomi[11].ToString(),
                                         simptomi[12].ToString(),
                                         simptomi[13].ToString()
-                                    },  { "0", "value", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },  }
+                                    },  { "0", "F", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0" },  }
                             }
                         },
                     },
@@ -128,10 +105,10 @@ namespace CodeWizards.Controllers
                     {
                     }
                 };
-                const string apiKey = "Shdhe2jZk0psqf3M5SLYNizaOE3dfJ3Y81Lrvj9RbZU9QCyU1oCRJEEdaTilJgea/WytbKN2/xufAnrkVXypUA=="; // Replace this with the API key for the web service
+                const string apiKey = "OP5UQHHwXqYWjrjJ3ZsrPXanE99DWnMi6Kmxa7z4uTULgwrNZSCLo4jtnTvNtQG4O17IZFdmqqKc+MyY6YUTHA=="; // Replace this with the API key for the web service
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/dfac26d08b5740aa9f52c2ee56a84c7d/services/bea27b40647649989ec73605452ed48b/execute?api-version=2.0&details=true");
+                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/dfac26d08b5740aa9f52c2ee56a84c7d/services/19f09fb417c74779bee22a3db047c1a9/execute?api-version=2.0&details=true");
 
 
 
@@ -142,13 +119,19 @@ namespace CodeWizards.Controllers
                     string result = await response.Content.ReadAsStringAsync();
 
                     string[] splitThis = result.Split('"');
-                    string finalResult = splitThis[splitThis.Length - 18];
+                    string finalResult = splitThis[splitThis.Length - 56];
 
 
-                    decimal statisticData = Convert.ToDecimal(finalResult);
+                    double statisticData = Convert.ToDouble(finalResult);
+                    int statDataRound = (int)Math.Round(statisticData * 100);
 
+                    StatisticsResult statRes = new StatisticsResult
+                    {
+                        Result = statisticData,
+                        ResultRound = statDataRound
+                    };
 
-
+                    return statRes;
                 }
                 else
                 {
@@ -161,7 +144,7 @@ namespace CodeWizards.Controllers
                     Console.WriteLine(responseContent);
                 }
 
-
+                return null;
             }
         }
 

@@ -374,16 +374,14 @@
                         <div class="container">
                             <div>
                                 <div class="col-md-6">
-                                    <div class="progress orange">
-                                        <div class="progress-bar" style="        width: 100%; background: #808080;">
-                                            <div class="progress-value">100%</div>
-                                        </div>
-                                    </div>
+                                   
+                                       
+                                            <div style="font-size: 30pt">@Model.statisticsRes.ResultRound%</div>
                                 </div>
                             </div>
                         </div>
 
-                        @{ if (Model.Result <= 0.3)
+                        @{ if (Model.statisticsRes.Result <= 0.15)
                             {
                                 <br />
                                 <p>Po našim procjenama mala je vjerovatnoća da ste trenutno zaraženi virusom COVID-19.</p>
@@ -391,7 +389,7 @@
                                 <br />
                                 <div>Ukoliko Vam se pojave bilo koji od simptoma iz prethodnog upitnika, molimo da obavezno kontaktirate svog porodičnog ljekara.</div>
                             }
-                            else if (Model.Result > 0.3 && Model.Result <= 0.65)
+                            else if (Model.statisticsRes.Result > 0.15 && Model.statisticsRes.Result <= 0.65)
                             {
                                 <p><b>Preporučujemo</b> Vam da kontaktirate porodičnog ljekara i provjerite ozbiljnost simptoma. </p>
                                 <div>Naručite neke od lijekova koje Vam nudimo klikom na sljedeće dugme: </div>
@@ -403,7 +401,7 @@
                                 <div>Naši volonteri su tu za Vas.</div>
                                 <div>Na taj način smanjujete mogućnost prenosa virusa na druge.</div>
                             }
-                            else if(Model.Result > 0.65)
+                            else if(Model.statisticsRes.Result > 0.65)
                             {
                                 <p><b>Obavezno</b> kontaktirajte ljekara i zakažite testiranje na COVID-19.</p>
 

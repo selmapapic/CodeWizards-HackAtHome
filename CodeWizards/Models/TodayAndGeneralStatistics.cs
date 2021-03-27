@@ -9,5 +9,6 @@ namespace CodeWizards.Models
     {
         public CovidStatisticsList CovidGeneral { get; set; }
         public TodayCases CovidToday { get; set; }
+        public StatisticsResult statisticsRes { get; set; }
     }
 }
