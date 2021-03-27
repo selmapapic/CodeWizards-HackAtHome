@@ -1,4 +1,4 @@
-﻿@using System.Threading; 
+﻿@using System.Threading;
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -55,15 +55,15 @@
             border: 6px solid red;
         }
 
-   /*     .blink_me {
-  animation: blinker 1s linear infinite;
-}
+        /*     .blink_me {
+          animation: blinker 1s linear infinite;
+        }
 
-keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}*/
+        keyframes blinker {
+          50% {
+            opacity: 0;
+          }
+        }*/
 
         .stilKartice {
             height: fit-content();
@@ -90,10 +90,10 @@ keyframes blinker {
             padding: 0;
         }
 
-        .stilForme{
+        .stilForme {
             position: absolute;
         }
-        
+
         .itemStil {
             border-bottom: 1px solid lightgrey;
             padding: 10px;
@@ -136,7 +136,7 @@ keyframes blinker {
                                  alt="..."
                                  class="img-fluid userSlika" />
 
-                            <button id="btnShowRoute" type="button" class="btn btn-secondary btn-md" onclick="showPatientRoute(document.getElementById('@i').value, @ViewBag.Patients[i].Id)">
+                            <button id="btnShowRoute" type="button" class="btn btn-warning btn-md" onclick="showPatientRoute(document.getElementById('@i').value, @ViewBag.Patients[i].Id)">
                                 <i class="fas fa-route fa-2x"></i>
                             </button>
                         </div>
@@ -166,20 +166,20 @@ keyframes blinker {
         </div>
         <div id="map"></div>
         <form asp-controller="Volunteer" asp-action="ChangeStatus" method="post" id="forma">
-                <input id="patientId" name="patientId" type="hidden" value="" />
-            <button id="btnUsluzi" type="submit" class="btn btn-secondary btn-lg">
+            <input id="patientId" name="patientId" type="hidden" value="" />
+            <button id="btnUsluzi" type="submit" class="btn btn-warning btn-lg">
                 <i class="fas fa-people-carry fa-2x"></i>
                 <h5>Usluži</h5>
             </button>
         </form>
-        
+
         <!--Hidden fileds so I can send data-->
-        
+
 
     </div>
 
     <script>
-        var map, geocoder, trenutniId;
+    var map, geocoder, trenutniId;
         var lokacija = {
             lat: 0,
             long: 0
@@ -204,54 +204,54 @@ keyframes blinker {
         function showPatientRoute(adresa, id) {
             removeRoute();
             document.getElementById("patientId").value = id;
-            
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        window.directionsService = new google.maps.DirectionsService();
-                        window.directionsDisplay = new google.maps.DirectionsRenderer();
 
-                        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-                            params: {
-                                address: adresa,
-                                key: 'AIzaSyBd7K5-Z6imkbJEje_G9aPqEL65uUiOFfc'
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    window.directionsService = new google.maps.DirectionsService();
+                    window.directionsDisplay = new google.maps.DirectionsRenderer();
+
+                    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                        params: {
+                            address: adresa,
+                            key: 'AIzaSyBd7K5-Z6imkbJEje_G9aPqEL65uUiOFfc'
+                        }
+                    })
+                        .then(function (response) {
+                            lokacija2 = {
+                                lat: 0,
+                                long: 0
                             }
+                            lokacija2.lat = response.data.results[0].geometry.location.lat;
+                            lokacija2.long = response.data.results[0].geometry.location.lng;
+
+                            lokacija = lokacija2;
+                            var request;
+
+
+                            console.log(lokacija);
+                            request = {
+                                origin: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                                destination: new google.maps.LatLng(lokacija.lat, lokacija.long),
+                                travelMode: 'DRIVING'
+                            }
+
+                            directionsDisplay.setMap(map);
+                            directionsService.route(request, (result, status) => {
+                                if (status == 'OK') {
+                                    directionsDisplay.setDirections(result);
+                                }
+                            });
                         })
-                            .then(function (response) {
-                                lokacija2 = {
-                                    lat: 0,
-                                    long: 0
-                                }
-                                lokacija2.lat = response.data.results[0].geometry.location.lat;
-                                lokacija2.long = response.data.results[0].geometry.location.lng;
 
-                                lokacija = lokacija2;
-                                var request;
-
-         
-                                console.log(lokacija);
-                                request = {
-                                    origin: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-                                    destination: new google.maps.LatLng(lokacija.lat, lokacija.long),
-                                    travelMode: 'DRIVING'
-                                }
-
-                                directionsDisplay.setMap(map);
-                                directionsService.route(request, (result, status) => {
-                                    if (status == 'OK') {
-                                        directionsDisplay.setDirections(result);
-                                    }
-                                });
-                            })
-                        
-                    });
-                }
+                });
+            }
         }
 
         function removeRoute() {
             if (window.directionsDisplay != null) {
                 window.directionsDisplay.setDirections({ routes: [] });
             }
-            
+
 
         }
 
@@ -264,9 +264,7 @@ keyframes blinker {
             const x = deltaLambda * Math.cos((fi1 + fi2) / 2);
             const y = deltaFi;
             return Math.sqrt(x * x + y * y) * R;
-        }
-
-    </script>
+        }</script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <script async defer
