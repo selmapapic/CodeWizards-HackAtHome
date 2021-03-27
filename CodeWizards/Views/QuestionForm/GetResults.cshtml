@@ -383,7 +383,7 @@
                             </div>
                         </div>
 
-                        @{ if (30 == 31)
+                        @{ if (Model.Result <= 0.3)
                             {
                                 <br />
                                 <p>Po našim procjenama mala je vjerovatnoća da ste trenutno zaraženi virusom COVID-19.</p>
@@ -391,7 +391,7 @@
                                 <br />
                                 <div>Ukoliko Vam se pojave bilo koji od simptoma iz prethodnog upitnika, molimo da obavezno kontaktirate svog porodičnog ljekara.</div>
                             }
-                            else if (30 == 30)
+                            else if (Model.Result > 0.3 && Model.Result <= 0.65)
                             {
                                 <p><b>Preporučujemo</b> Vam da kontaktirate porodičnog ljekara i provjerite ozbiljnost simptoma. </p>
                                 <div>Naručite neke od lijekova koje Vam nudimo klikom na sljedeće dugme: </div>
@@ -403,7 +403,7 @@
                                 <div>Naši volonteri su tu za Vas.</div>
                                 <div>Na taj način smanjujete mogućnost prenosa virusa na druge.</div>
                             }
-                            else
+                            else if(Model.Result > 0.65)
                             {
                                 <p><b>Obavezno</b> kontaktirajte ljekara i zakažite testiranje na COVID-19.</p>
 

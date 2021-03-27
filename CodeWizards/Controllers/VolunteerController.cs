@@ -34,7 +34,9 @@ namespace CodeWizards.Controllers
         // GET: /<controller>/
         public async Task<IActionResult> VolunteerAsync()
         {
-            ViewBag.Patients = await _context.Patients.ToListAsync();
+            List<Patient> pacijenti = await _context.Patients.ToListAsync();
+            
+            ViewBag.Patients = pacijenti.OrderByDescending(pacijent => pacijent.Emergency).ToList();
             ViewBag.Medicine = await _context.Medicines.ToListAsync();
             ViewBag.LinkList = await _context.PatientMedicineLinks.ToListAsync();
             return View();
@@ -61,14 +63,14 @@ namespace CodeWizards.Controllers
 
                     mail.Subject = "Status isporuke";
                     mail.Body = "Poštovani, <br /> " + Environment.NewLine +
-                        "     <br />   želimo da Vas obavijestimo da je Vašu narudžbu primio naš volonter Milica. <br />" +
+                        "     <br />   želimo da Vas obavijestimo da je Vašu narudžbu primio naš volonter. <br />" +
                         Environment.NewLine +
-                        "       Možete stupiti u kontakt sa njim putem emaila: mdokic1@etf.unsa.ba ili na broj telefona: +387 62 531 942. Narudžba će biti " +
+                        "       Za sva pitanja možete nam se javiti putem emaila: code.wizards2021@gmail.com ili na broj telefona: +387 62 531 942. Narudžba će biti " +
                         "isporučena do kraja dana. <br />" + Environment.NewLine +
                         "        " + Environment.NewLine +
                         "      <br />  Srdačan pozdrav, <br /> " + Environment.NewLine
                               + " <br /> CodeWizards tim";
-                    //mail.Body = mail.Body.Replace("@", System.Environment.NewLine);
+
                     mail.IsBodyHtml = true;
 
                     ViewBag.From = mail.From;
@@ -76,8 +78,6 @@ namespace CodeWizards.Controllers
                     ViewBag.Subject = mail.Subject;
                     ViewBag.Body = mail.Body;
 
-                    //TempData["mail"] = Newtonsoft.Json.JsonConvert.SerializeObject(mail);
-                    //MailMessage email = Newtonsoft.Json.JsonConvert.DeserializeObject<MailMessage>((string)TempData["mail"]);
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
@@ -90,6 +90,7 @@ namespace CodeWizards.Controllers
                 }
             }
 
+            TempData["ShowAlert"] = "show";
             return RedirectToAction("Volunteer");
         }
 
@@ -136,6 +137,8 @@ namespace CodeWizards.Controllers
             smtp.Credentials = new System.Net.NetworkCredential("code.wizards2021@gmail.com", "hakaton2021!");
             smtp.EnableSsl = true;
             smtp.Send(mail);
+
+            TempData["ShowAlert"] = "show";
 
             return RedirectToAction("LoginVolunteer");
         }
