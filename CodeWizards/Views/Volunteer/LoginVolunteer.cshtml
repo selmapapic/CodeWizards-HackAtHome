@@ -259,6 +259,13 @@
             /* text-align: right; */
         }
 
+        #navigacija {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+        }
 
 
         .pozicijaDesni {
@@ -267,6 +274,9 @@
     </style>
 </head>
 <body>
+    <a asp-controller="Cards" asp-action="Cards">
+        <img id="navigacija" src="https://img.icons8.com/nolan/96/circled-chevron-left.png" />
+    </a>
     <div class="login-box pozicijaLijevi">
         <h2>Ulaz na Volonter hub</h2>
         <form asp-controller="Volunteer" asp-action="Login">

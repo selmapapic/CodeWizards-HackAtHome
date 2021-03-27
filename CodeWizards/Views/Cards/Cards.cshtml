@@ -86,9 +86,21 @@
         #volonter {
             background-image: url(https://images.theconversation.com/files/195838/original/file-20171122-6020-a0zfau.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop);
         }
+
+        #navigacija {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+        }
+
     </style>
 </head>
 <body>
+    <a asp-controller="Home" asp-action="Index">
+        <img id="navigacija" src="https://img.icons8.com/nolan/96/circled-chevron-left.png" />
+    </a>
     <div class="container">
         <div id="pitanja" class="section">
             <div class="content poravnanje">
