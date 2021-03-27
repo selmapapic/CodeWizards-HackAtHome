@@ -1,5 +1,4 @@
-# Covid Helper
-## CodeWizards
+# Code Wizards
 
 ![alt text](https://i.imgur.com/MP8Myj5.png)
 
