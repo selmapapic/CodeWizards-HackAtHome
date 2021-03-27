@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200&display=swap');
+    </style>
+</head>
+<body>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+    <script>
+        google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBackgroundColor);
+
+function drawBackgroundColor() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+    data.addColumn('number', 'Zarazeni');
+    data.addColumn('number', 'Oporavljeni');
+
+      data.addRows([
+          [0, 0, 0], [1, 10, 5], [2, 23, 15], [3, 17, 9], [4, 18, 10], [5, 9, 5],
+          [6, 11, 3], [7, 27, 19], [8, 33, 25], [9, 40, 32], [10, 32, 24], [11, 35, 27],
+          [12, 30, 22], [13, 40, 32], [14, 42, 34]
+      ]);
+    var options = {
+        width: 500,
+        height: 300,
+        hAxis: {
+            title: 'Time',
+            textStyle: {
+                color: '#01579b',
+                fontSize: 16,
+                fontName: 'Poppins',
+                bold: true
+            },
+            titleTextStyle: {
+                color: '#01579b',
+                fontSize: 16,
+                fontName: 'Arial',
+                bold: false
+            }
+        },
+        vAxis: {
+            title: 'Popularity',
+            textStyle: {
+                color: '#1a237e',
+                fontSize: 16,
+                bold: true
+            },
+            titleTextStyle: {
+                color: '#1a237e',
+                fontSize: 16,
+                bold: true
+            }
+        },
+        colors: ['#a52714', '#097138']
+    };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+    <div id="chart_div"></div>
+</body>
+</html>

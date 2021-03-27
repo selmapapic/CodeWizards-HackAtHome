@@ -27,10 +27,10 @@ namespace CodeWizards.Controllers
             return View();
         }
 
-        public Task GetResults(QuestionFormInfoReq req)
+        public IActionResult GetResults(QuestionFormInfoReq req)
         {
-            Console.WriteLine(req);
-            return null;
+            return View();
+            
         }
     }
 }
