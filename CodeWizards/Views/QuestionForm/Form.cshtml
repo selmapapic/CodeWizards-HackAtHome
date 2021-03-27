@@ -111,7 +111,7 @@
 <body>
 
         <div class="container">
-            <form asp-controller="QuestionForm" asp-action="GetResults" method="post">
+            <form asp-controller="QuestionForm" asp-action="GetResults" method="get">
 
                 <div class="step step-1 active">
                     <div >
@@ -174,7 +174,7 @@
                         <label>Ne</label>
                     </div>
                     <button type="button" class="previous-btn">Nazad</button>
-                    <button type="submit" class="next-btn">Dalje</button>
+                    <button type="button" class="next-btn">Dalje</button>
                 </div>
 
                 <div class="step step-2">
@@ -257,27 +257,27 @@
                     <div>
                         <fieldset>
                             <legend>Označite simptome koje imate:</legend>
-                            <input type="checkbox" name="Simptomi" value="temp"> Temperatura<br>
-                            <input type="checkbox" name="Simptomi" value="kasalj"> Suh kašalj<br>
-                            <input type="checkbox" name="Simptomi" value="malaksalost"> Malaksalost<br>
-                            <input type="checkbox" name="Simptomi" value="bolKostiMisici"> Bol u kostima i mišićima<br>
-                            <input type="checkbox" name="Simptomi" value="culoMirisa"> Gubitak čula mirisa<br>
-                            <input type="checkbox" name="Simptomi" value="culoOkusa"> Gubitak čula okusa<br>
-                            <input type="checkbox" name="Simptomi" value="glavobolja"> Glavobolja<br>
-                            <input type="checkbox" name="Simptomi" value="disanje"> Teško disanje<br>
-                            <input type="checkbox" name="Simptomi" value="dah"> Kratak dah<br>
-                            <input type="checkbox" name="Simptomi" value="diareja"> Diareja<br>
-                            <input type="checkbox" name="Simptomi" value="bolPrsa"> Bol u prsima<br>
-                            <input type="checkbox" name="Simptomi" value="kretanje"> Otežano kretanje<br>
-                            <input type="checkbox" name="Simptomi" value="svijest"> Gubljenje svijesti<br>
-                            <input type="checkbox" name="Simptomi" value="grlo"> Bol u grlu<br>
+                            <input type="checkbox" name="Simptomi" value="1"> Temperatura<br>
+                            <input type="checkbox" name="Simptomi" value="2"> Suh kašalj<br>
+                            <input type="checkbox" name="Simptomi" value="3"> Malaksalost<br>
+                            <input type="checkbox" name="Simptomi" value="4"> Bol u kostima i mišićima<br>
+                            <input type="checkbox" name="Simptomi" value="5"> Gubitak čula mirisa<br>
+                            <input type="checkbox" name="Simptomi" value="6"> Gubitak čula okusa<br>
+                            <input type="checkbox" name="Simptomi" value="7"> Glavobolja<br>
+                            <input type="checkbox" name="Simptomi" value="8"> Teško disanje<br>
+                            <input type="checkbox" name="Simptomi" value="9"> Kratak dah<br>
+                            <input type="checkbox" name="Simptomi" value="10"> Diareja<br>
+                            <input type="checkbox" name="Simptomi" value="11"> Bol u prsima<br>
+                            <input type="checkbox" name="Simptomi" value="12"> Otežano kretanje<br>
+                            <input type="checkbox" name="Simptomi" value="13"> Gubljenje svijesti<br>
+                            <input type="checkbox" name="Simptomi" value="14"> Bol u grlu<br>
                             <br>
                 
                         </fieldset>
                     </div>
 
                     <button type="button" class="previous-btn">Nazad</button>
-                    <button type="button" class="submit-btn">Potvrdi</button>
+                    <button type="submit" class="submit-btn">Potvrdi</button>
                 </div>
 
             </form>
@@ -300,16 +300,7 @@
             });
         });
 
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const inputs = [];
-            form.querySelectorAll("input").forEach((input) => {
-                const { name, value } = input;
-                inputs.push({ name, value });
-            });
-            console.log(inputs);
-            form.reset();
-        });
+       
 
         function changeStep(btn) {
             let index = 0;

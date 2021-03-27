@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeWizards.Data;
+using CodeWizards.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,12 @@ namespace CodeWizards.Controllers
         {
 
             return View();
+        }
+
+        public Task GetResults(QuestionFormInfoReq req)
+        {
+            Console.WriteLine(req);
+            return null;
         }
     }
 }
