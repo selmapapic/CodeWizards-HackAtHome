@@ -1,6 +1,6 @@
 ﻿<html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/3874a11e93.js" crossorigin="anonymous"></script>
 
     <style>
         @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200&display=swap');
@@ -19,7 +19,7 @@
         .login-box {
             position: absolute;
             top: 50%;
-            left: 75%;
+            left: 65%;
             width: 400px;
             padding: 40px;
             transform: translate(-50%, -50%);
@@ -244,70 +244,54 @@
             font-size: 18px;
             cursor: pointer;
             border-radius: 10px;
-            width: 130px;
+            width: 170px;
             padding-left: 0px;
             padding-right: 0px;
             /* text-align: right; */
         }
+
+
+
+        .pozicijaDesni {
+            left: 35%;
+        }
     </style>
 </head>
 <body>
-    <form asp-controller="MedicineOrder" asp-action="OrderDone" method="get">
-        <div class="login-box">
-            <h2>Unesite lične podatke</h2>
-
+    <div class="login-box pozicijaLijevi">
+        <h2>Ulaz na Volonter hub</h2>
+        <form asp-controller="Volunteer" asp-action="Login">
             <div class="user-box">
-                <input type="text" name="Name" required="">
+                <input type="password" name="kod" required="">
+                <label>Pristupni kod</label>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="webShop" style="width: 140px"><i class="fas fa-sign-in-alt"></i> &nbsp; Pristupi</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="login-box pozicijaDesni">
+        <h2>Registracija volontera</h2>
+        <form asp-controller="Volunteer" asp-action="RegisterVolunteer">
+            <div class="user-box">
+                <input type="text" name="imePrezime" required="">
                 <label>Ime i prezime</label>
             </div>
             <div class="user-box">
-                <input type="text" name="Telephone" required="">
-                <label>Broj telefona</label>
-            </div>
-            <div class="user-box">
-                <input type="text" name="Address" required="">
-                <label>Adresa</label>
-            </div>
-            <div class="user-box">
-                <input type="text" name="Email" required="">
+                <input type="text" name="email" required="">
                 <label>E-mail</label>
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="checkbox" class="check" name="Emergency" value="true">
-                    <label>Hitno</label>
-                </div>
-                <div class="col">
-                    <button type="submit" class="webShop"><i class="fa fa-cart-plus"></i> &nbsp; Narudžba</button>
+                    <button type="submit" class="webShop"><i class="fa fa-user-plus"></i> &nbsp; Registruj se</button>
                 </div>
             </div>
-
-
-        </div>
-
-        <div class="lijekoviContainer">
-
-
-            @for (int i = 0; i < Model.Medicines.Count; i++)
-            {
-                <div class="row lijekovi">
-                    <div class="col">
-                        <img src="@Model.Medicines[i].Image" alt="Italian Trulli">
-                    </div>
-                    <div class="col cijena">
-                        <p>@Model.Medicines[i].Description</p>
-                    </div>
-                    <div class="col naruci">
-                        <h5>@Model.Medicines[i].Name</h5>
-                        <input type="checkbox" class="check" name="Medicine" value=@Model.Medicines[i].Id>
-                        <label class="naruci">naruči ovaj proizvod</label>
-                    </div>
-                </div>
-
-            }
-
-        </div>
-    </form>
+        </form>
+    </div>
 
 </body>
 </html>
+
