@@ -47,18 +47,19 @@ namespace CodeWizards.Controllers
                     await _context.SaveChangesAsync();
 
                     MailMessage mail = new MailMessage();
+                    mail.IsBodyHtml = false;
                     mail.From = new MailAddress("code.wizards2021@gmail.com");
                     mail.To.Add(pacijent.Email);
 
                     mail.Subject = "Status isporuke";
-                    mail.Body = "Poštovani, " + Environment.NewLine +
-                        "        želimo da Vas obavijestimo da je Vašu narudžbu primio naš volonter Milica." +
+                    mail.Body = "Poštovani, <br /> " + Environment.NewLine +
+                        "     <br />   želimo da Vas obavijestimo da je Vašu narudžbu primio naš volonter Milica. <br />" +
                         Environment.NewLine +
                         "       Možete stupiti u kontakt sa njim putem emaila: mdokic1@etf.unsa.ba. Narudžba će biti " +
-                        "isporučena do kraja dana." + Environment.NewLine +
+                        "isporučena do kraja dana. <br />" + Environment.NewLine +
                         "        " + Environment.NewLine +
-                        "        Srdačan pozdrav, " + Environment.NewLine
-                              + "CodeWizards tim";
+                        "      <br />  Srdačan pozdrav, <br /> " + Environment.NewLine
+                              + "<br /> CodeWizards tim";
                     //mail.Body = mail.Body.Replace("@", System.Environment.NewLine);
                     mail.IsBodyHtml = true;
 
