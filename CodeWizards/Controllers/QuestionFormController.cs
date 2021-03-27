@@ -32,8 +32,15 @@ namespace CodeWizards.Controllers
         public async Task<IActionResult> GetResultsAsync(QuestionFormInfoReq req)
         {
             CovidStatisticsList covidStatistics = await GetStatisticsAsync();
+            TodayCases todayCases = await GetTodaysCasesAsync();
 
-            return View(covidStatistics);
+            TodayAndGeneralStatistics todayAndGeneralStatistics = new TodayAndGeneralStatistics
+            {
+                CovidGeneral = covidStatistics,
+                CovidToday = todayCases
+            };
+
+            return View(todayAndGeneralStatistics);
             
         }
 
@@ -69,6 +76,28 @@ namespace CodeWizards.Controllers
 
             }
         }
-        
+
+        private async Task<TodayCases> GetTodaysCasesAsync()
+        {
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            var baseAddress = new Uri("https://corona.lmao.ninja/v2/");
+
+
+            using (var httpClient = new HttpClient { BaseAddress = baseAddress })
+            {
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
+                using (var response = await httpClient.GetAsync("countries/Bosnia?yesterday=true&strict=true"))
+                {
+                    string responseData = await response.Content.ReadAsStringAsync();
+
+                    TodayCases todayCases = JsonConvert.DeserializeObject<TodayCases>(responseData);
+
+                    return todayCases;
+
+                }
+
+            }
+        }
+
     }
 }
