@@ -15,7 +15,8 @@ Covid Helper is a web application that solves the problem of people in lockdown,
 ## Technologies
 * .NET Core
 * JavaScript
-* HTML/CSS
+* HTML
+* CSS
 * Google Maps JavaScript API
 * Google Maps Geocoding API
 * Azure Machine Learning Tool
