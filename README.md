@@ -5,7 +5,7 @@
 ## Overview
 Covid Helper is a web application that solves the problem of people in lockdown, who are not able to get needed medication in time. The application allows users to complete online Covid-19 test and get the probability of being infected using Machine Learning. We provide a wide network of volunteers, who are able to check the patient's locations, see the fastest route and deliver requested medication in just one day. Everyone can register as a volunteer and access Volunteer hub using their own access code.
 
-[This video](https://drive.google.com/file/d/1s5tzy77JQJZVgWAbCUfCaRmI8b9xKDYi/view?usp=sharing) shows the app with all its functionalities. 🎥
+[This video](https://drive.google.com/file/d/1s5tzy77JQJZVgWAbCUfCaRmI8b9xKDYi/view?usp=sharing) shows the app with all its features. 🎥
 
 ## Features
 * Covid-19 questions form
